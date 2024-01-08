@@ -8,32 +8,37 @@
 
 // Event handling, user interaction is what starts the code execution.
 
-var taskInput=document.getElementById("new-task");//Add a new task.
-var addButton=document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder=document.getElementById("incompleteTasks");//ul of #incompleteTasks
-var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
+var taskInput = document.getElementById("new-task");//Add a new task.
+var addButton = document.getElementsByTagName('button')[0];//first button
+var incompleteTaskHolder = document.getElementById("incomplete-tasks");//ul of #incompleteTasks
+var completedTasksHolder = document.getElementById("completed-tasks");//completed-tasks
 
 
 //New task list item
 var createNewTaskElement=function(taskString){
 
     var listItem=document.createElement("li");
+    listItem.className="main__link";
 
     //input (checkbox)
     var checkBox=document.createElement("input");//checkbx
+    checkBox.className = "main__checkbox"
     //label
     var label=document.createElement("label");//label
+
     //input (text)
     var editInput=document.createElement("input");//text
     //button.edit
     var editButton=document.createElement("button");//edit button
-
+    editButton.className = 'main__btn';
     //button.delete
     var deleteButton=document.createElement("button");//delete button
+    deleteButton.className = 'main__delete-btn'
     var deleteButtonImg=document.createElement("img");//delete button image
+    deleteButtonImg.className = 'main__delete-btn';
 
     label.innerText=taskString;
-    label.className='task';
+    label.className='main__label-task';
 
     //Each elements, needs appending
     checkBox.type="checkbox";
@@ -41,9 +46,9 @@ var createNewTaskElement=function(taskString){
     editInput.className="task";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="edit";
+    
 
-    deleteButton.className="delete";
+    deleteButton.className="main__btn";
     deleteButtonImg.src='./remove.svg';
     deleteButton.appendChild(deleteButtonImg);
 
@@ -85,7 +90,7 @@ var editTask=function(){
     var editInput=listItem.querySelector('input[type=text]');
     var label=listItem.querySelector("label");
     var editBtn=listItem.querySelector(".edit");
-    var containsClass=listItem.classList.contains("editMode");
+    var containsClass=listItem.classList.contains("edit-mode");
     //If class of the parent is .editmode
     if(containsClass){
 
@@ -99,7 +104,7 @@ var editTask=function(){
     }
 
     //toggle .editmode on the parent.
-    listItem.classList.toggle("editMode");
+    listItem.classList.toggle("edit-mode");
 };
 
 
@@ -147,7 +152,7 @@ var ajaxRequest=function(){
 
 
 //Set the click handler to the addTask function.
-addButton.onclick=addTask;
+
 addButton.addEventListener("click",addTask);
 addButton.addEventListener("click",ajaxRequest);
 
@@ -193,3 +198,4 @@ for (var i=0; i<completedTasksHolder.children.length;i++){
 //prevent creation of empty tasks.
 
 //Change edit to save when you are in edit mode.
+console.log('Не работает редактирование и удаление постараюсь поправить')
